@@ -1,124 +1,189 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Educational Chatbot</title>
+    <meta charset="UTF-8">
+    <title>EduTech Chatbot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
     <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background: #f4f4f4;
-        }
-        .chat-container {
-            width: 400px;
-            margin: 40px auto;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px #ccc;
-            padding: 10px;
-        }
-        .messages {
-            height: 300px;
-            overflow-y: auto;
-            padding: 10px;
-        }
-        .user {
-            text-align: right;
-            margin: 8px;
-        }
-        .user span {
-            background: #0084ff;
-            color: white;
-            padding: 8px 12px;
-            border-radius: 15px;
-            display: inline-block;
-        }
-        .bot {
-            text-align: left;
-            margin: 8px;
-        }
-        .bot span {
-            background: #e5e5e5;
-            padding: 8px 12px;
-            border-radius: 15px;
-            display: inline-block;
-        }
-        .input-area {
+            margin: 0;
+            background: linear-gradient(135deg, #4f46e5, #6366f1);
+            height: 100vh;
             display: flex;
-            gap: 5px;
+            justify-content: center;
+            align-items: center;
         }
-        select, input, button {
-            padding: 8px;
+
+        .chat-container {
+            width: 380px;
+            height: 550px;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .chat-header {
+            background: #4f46e5;
+            color: white;
+            padding: 16px;
+            font-weight: 600;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background: #f9fafb;
+        }
+
+        .message {
+            max-width: 75%;
+            margin-bottom: 12px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            animation: slideUp 0.3s ease;
             font-size: 14px;
         }
-        input {
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .user {
+            background: #4f46e5;
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 4px;
+        }
+
+        .bot {
+            background: #e5e7eb;
+            color: #111827;
+            margin-right: auto;
+            border-bottom-left-radius: 4px;
+        }
+
+        .typing {
+            font-style: italic;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 12px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .chat-input input {
             flex: 1;
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid #d1d5db;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .chat-input button {
+            margin-left: 8px;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 10px;
+            background: #4f46e5;
+            color: white;
+            cursor: pointer;
+            font-weight: 500;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .chat-input button:hover {
+            background: #4338ca;
+            transform: scale(1.05);
         }
     </style>
 </head>
-
 <body>
+
 <div class="chat-container">
-    <h3>📚 Free Educational Chatbot</h3>
+    <div class="chat-header">
+        🎓 EduTech Chatbot
+    </div>
 
-    <select id="subject">
-        <option value="python">Python</option>
-        <option value="math">Math</option>
-        <option value="science">Science</option>
-    </select>
+    <div class="chat-messages" id="chat">
+        <div class="message bot">
+            Hello 👋 I'm your EduTech assistant. How can I help you?
+        </div>
+    </div>
 
-    <!-- CHAT HISTORY -->
-    <div class="messages" id="chat"></div>
-
-    <!-- INPUT -->
-    <div class="input-area">
-        <input id="message" placeholder="Ask something..." onkeypress="handleKey(event)">
-        <button onclick="send()">Ask</button>
+    <div class="chat-input">
+        <input type="text" id="userInput" placeholder="Type your message..." />
+        <button onclick="sendMessage()">Send</button>
     </div>
 </div>
 
 <script>
-function handleKey(e) {
-    if (e.key === "Enter") send();
-}
+    const chat = document.getElementById("chat");
+    const input = document.getElementById("userInput");
 
-function send() {
-    let msg = document.getElementById("message").value.trim();
-    let subject = document.getElementById("subject").value;
+    function sendMessage() {
+        const text = input.value.trim();
+        if (!text) return;
 
-    if (!msg) return;
+        addMessage(text, "user");
+        input.value = "";
 
-    let chat = document.getElementById("chat");
-
-    // User message
-    chat.innerHTML += `<div class="user"><span>${msg}</span></div>`;
-    document.getElementById("message").value = "";
-
-    fetch("/chat", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({ message: msg, subject: subject })
-    })
-    .then(res => res.json())
-    .then(data => {
-        // Bot message
-        chat.innerHTML += `<div class="bot"><span>${data.reply}</span></div>`;
+        const typing = document.createElement("div");
+        typing.className = "message bot typing";
+        typing.innerText = "Bot is typing...";
+        chat.appendChild(typing);
         chat.scrollTop = chat.scrollHeight;
+
+        fetch("/chat", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message: text })
+        })
+        .then(res => res.json())
+        .then(data => {
+            chat.removeChild(typing);
+            addMessage(data.reply, "bot");
+        });
+    }
+
+    function addMessage(text, sender) {
+        const msg = document.createElement("div");
+        msg.className = `message ${sender}`;
+        msg.innerText = text;
+        chat.appendChild(msg);
+        chat.scrollTop = chat.scrollHeight;
+    }
+
+    input.addEventListener("keypress", function(e) {
+        if (e.key === "Enter") sendMessage();
     });
-}
 </script>
 
 </body>
 </html>
-<button onclick="voice()">🎤 Speak</button>
 
-<script>
-function voice() {
-  let recognition = new webkitSpeechRecognition();
-  recognition.lang = "en-US";
-  recognition.start();
-
-  recognition.onresult = function(event) {
-    document.getElementById("message").value =
-      event.results[0][0].transcript;
-  };
-}
-</script>
