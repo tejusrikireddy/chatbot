@@ -1,0 +1,17 @@
+{
+  "python": {
+    "variables": "Variables store data values. Example: x = 10",
+    "loops": "Loops repeat a block of code. Example: for i in range(5): print(i)",
+    "functions": "Functions are reusable blocks of code defined using def.",
+    "lists": "Lists store multiple items in a single variable."
+  },
+  "math": {
+    "addition": "Addition means combining numbers. Example: 2 + 3 = 5",
+    "subtraction": "Subtraction means removing a value from another.",
+    "multiplication": "Multiplication is repeated addition."
+  },
+  "science": {
+    "gravity": "Gravity is a force that pulls objects toward Earth.",
+    "photosynthesis": "Plants make food using sunlight, water, and carbon dioxide."
+  }
+}
