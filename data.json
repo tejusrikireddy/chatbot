@@ -1,17 +1,79 @@
 {
   "python": {
-    "variables": "Variables store data values. Example: x = 10",
-    "loops": "Loops repeat a block of code. Example: for i in range(5): print(i)",
-    "functions": "Functions are reusable blocks of code defined using def.",
-    "lists": "Lists store multiple items in a single variable."
+    "qa": [
+      {
+        "question": "what is python",
+        "answer": "Python is a high-level, interpreted programming language used for web development, AI, data science, and automation."
+      },
+      {
+        "question": "what is list in python",
+        "answer": "A list in Python is an ordered, mutable collection that allows duplicate elements."
+      },
+      {
+        "question": "what is dictionary in python",
+        "answer": "A dictionary stores data in key-value pairs and is unordered and mutable."
+      },
+      {
+        "question": "what are loops",
+        "answer": "Loops are used to execute a block of code repeatedly. Python supports for and while loops."
+      }
+    ],
+    "suggested": [
+      "What is python?",
+      "What is list in python?",
+      "Explain dictionary in python",
+      "What are loops?"
+    ]
   },
-  "math": {
-    "addition": "Addition means combining numbers. Example: 2 + 3 = 5",
-    "subtraction": "Subtraction means removing a value from another.",
-    "multiplication": "Multiplication is repeated addition."
+
+  "java": {
+    "qa": [
+      {
+        "question": "what is java",
+        "answer": "Java is an object-oriented, platform-independent programming language."
+      },
+      {
+        "question": "what is jvm",
+        "answer": "JVM stands for Java Virtual Machine. It runs Java bytecode."
+      }
+    ],
+    "suggested": [
+      "What is Java?",
+      "What is JVM?"
+    ]
   },
-  "science": {
-    "gravity": "Gravity is a force that pulls objects toward Earth.",
-    "photosynthesis": "Plants make food using sunlight, water, and carbon dioxide."
+
+  "ai": {
+    "qa": [
+      {
+        "question": "what is ai",
+        "answer": "Artificial Intelligence is the simulation of human intelligence in machines."
+      },
+      {
+        "question": "types of ai",
+        "answer": "AI types include Narrow AI, General AI, and Super AI."
+      }
+    ],
+    "suggested": [
+      "What is AI?",
+      "Types of AI"
+    ]
+  },
+
+  "ml": {
+    "qa": [
+      {
+        "question": "what is machine learning",
+        "answer": "Machine Learning allows systems to learn from data without being explicitly programmed."
+      },
+      {
+        "question": "types of machine learning",
+        "answer": "Types include Supervised, Unsupervised, and Reinforcement learning."
+      }
+    ],
+    "suggested": [
+      "What is Machine Learning?",
+      "Types of Machine Learning"
+    ]
   }
 }
