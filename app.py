@@ -4,24 +4,9 @@ import os
 
 app = Flask(__name__)
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DATA_FILE = os.path.join(BASE_DIR, "data.json")
-
-with open(DATA_FILE, "r", encoding="utf-8") as f:
+# Load knowledge safely
+with open("data.json", "r", encoding="utf-8") as f:
     KNOWLEDGE = json.load(f)
-
-
-def find_answer(subject, message):
-    message = message.lower()
-
-    if subject not in KNOWLEDGE:
-        return "Sorry, I don't know this subject yet."
-
-    for key, answer in KNOWLEDGE[subject].items():
-        if key in message:
-            return answer
-
-    return "🤔 I don't understand yet. Try keywords like: " + ", ".join(KNOWLEDGE[subject].keys())
 
 @app.route("/")
 def home():
@@ -29,13 +14,22 @@ def home():
 
 @app.route("/chat", methods=["POST"])
 def chat():
-    data = request.json
-    subject = data["subject"]
-    message = data["message"]
+    data = request.get_json()
+    subject = data.get("subject", "")
+    message = data.get("message", "").lower()
 
-    reply = find_answer(subject, message)
+    reply = "Sorry, I don't know that yet."
+
+    if subject in KNOWLEDGE:
+        for key, value in KNOWLEDGE[subject].items():
+            if key in message:
+                reply = value
+                break
+
     return jsonify({"reply": reply})
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
+
+
