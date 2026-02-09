@@ -15,21 +15,26 @@ def home():
 @app.route("/chat", methods=["POST"])
 def chat():
     data = request.get_json()
-    subject = data.get("subject", "")
-    message = data.get("message", "").lower()
+    user_message = data.get("message", "").lower()
 
-    reply = "Sorry, I don't know that yet."
+    if not user_message:
+        return jsonify({"reply": "Please type something 😊"})
 
-    if subject in KNOWLEDGE:
-        for key, value in KNOWLEDGE[subject].items():
-            if key in message:
-                reply = value
-                break
+    # Simple response logic
+    if "hi" in user_message or "hello" in user_message:
+        reply = "Hello 👋 How can I help you today?"
+    elif "course" in user_message:
+        reply = "We offer AI, ML, Python, and Web Development courses."
+    elif "contact" in user_message:
+        reply = "You can contact us at edutech@gmail.com 📧"
+    else:
+        reply = "Sorry 🤖 I didn’t understand that. Can you rephrase?"
 
     return jsonify({"reply": reply})
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
+
 
 
