@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Educational Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+        }
+        .chat-container {
+            width: 400px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+            padding: 10px;
+        }
+        .messages {
+            height: 300px;
+            overflow-y: auto;
+            padding: 10px;
+        }
+        .user {
+            text-align: right;
+            margin: 8px;
+        }
+        .user span {
+            background: #0084ff;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 15px;
+            display: inline-block;
+        }
+        .bot {
+            text-align: left;
+            margin: 8px;
+        }
+        .bot span {
+            background: #e5e5e5;
+            padding: 8px 12px;
+            border-radius: 15px;
+            display: inline-block;
+        }
+        .input-area {
+            display: flex;
+            gap: 5px;
+        }
+        select, input, button {
+            padding: 8px;
+            font-size: 14px;
+        }
+        input {
+            flex: 1;
+        }
+    </style>
+</head>
+
+<body>
+<div class="chat-container">
+    <h3>📚 Free Educational Chatbot</h3>
+
+    <select id="subject">
+        <option value="python">Python</option>
+        <option value="math">Math</option>
+        <option value="science">Science</option>
+    </select>
+
+    <!-- CHAT HISTORY -->
+    <div class="messages" id="chat"></div>
+
+    <!-- INPUT -->
+    <div class="input-area">
+        <input id="message" placeholder="Ask something..." onkeypress="handleKey(event)">
+        <button onclick="send()">Ask</button>
+    </div>
+</div>
+
+<script>
+function handleKey(e) {
+    if (e.key === "Enter") send();
+}
+
+function send() {
+    let msg = document.getElementById("message").value.trim();
+    let subject = document.getElementById("subject").value;
+
+    if (!msg) return;
+
+    let chat = document.getElementById("chat");
+
+    // User message
+    chat.innerHTML += `<div class="user"><span>${msg}</span></div>`;
+    document.getElementById("message").value = "";
+
+    fetch("/chat", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ message: msg, subject: subject })
+    })
+    .then(res => res.json())
+    .then(data => {
+        // Bot message
+        chat.innerHTML += `<div class="bot"><span>${data.reply}</span></div>`;
+        chat.scrollTop = chat.scrollHeight;
+    });
+}
+</script>
+
+</body>
+</html>
+<button onclick="voice()">🎤 Speak</button>
+
+<script>
+function voice() {
+  let recognition = new webkitSpeechRecognition();
+  recognition.lang = "en-US";
+  recognition.start();
+
+  recognition.onresult = function(event) {
+    document.getElementById("message").value =
+      event.results[0][0].transcript;
+  };
+}
+</script>
