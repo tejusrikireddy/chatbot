@@ -6,8 +6,16 @@
         "answer": "Python is a high-level, interpreted programming language used for web development, AI, data science, and automation."
       },
       {
+        "question": "why python is popular",
+        "answer": "Python is popular because of its simple syntax, large libraries, and wide usage in AI, data science, and web development."
+      },
+      {
         "question": "what is list in python",
         "answer": "A list in Python is an ordered, mutable collection that allows duplicate elements."
+      },
+      {
+        "question": "what is tuple in python",
+        "answer": "A tuple is an ordered, immutable collection used to store multiple values."
       },
       {
         "question": "what is dictionary in python",
@@ -16,13 +24,34 @@
       {
         "question": "what are loops",
         "answer": "Loops are used to execute a block of code repeatedly. Python supports for and while loops."
+      },
+      {
+        "question": "what is function",
+        "answer": "A function is a reusable block of code that performs a specific task."
+      },
+      {
+        "question": "what is class",
+        "answer": "A class is a blueprint for creating objects in object-oriented programming."
+      },
+      {
+        "question": "what is pip",
+        "answer": "pip is Python’s package manager used to install and manage libraries."
+      },
+      {
+        "question": "what is virtual environment",
+        "answer": "A virtual environment isolates project dependencies to avoid conflicts between packages."
       }
     ],
     "suggested": [
-      "What is python?",
-      "What is list in python?",
-      "Explain dictionary in python",
-      "What are loops?"
+      "What is Python?",
+      "Why Python is popular?",
+      "What is list in Python?",
+      "What is tuple?",
+      "Explain dictionary in Python",
+      "What are loops?",
+      "What is a function?",
+      "What is pip?",
+      "What is virtual environment?"
     ]
   },
 
@@ -33,13 +62,43 @@
         "answer": "Java is an object-oriented, platform-independent programming language."
       },
       {
+        "question": "features of java",
+        "answer": "Java features include platform independence, object-oriented design, security, and robustness."
+      },
+      {
         "question": "what is jvm",
         "answer": "JVM stands for Java Virtual Machine. It runs Java bytecode."
+      },
+      {
+        "question": "what is jdk",
+        "answer": "JDK is Java Development Kit used to develop Java applications."
+      },
+      {
+        "question": "what is jre",
+        "answer": "JRE is Java Runtime Environment required to run Java programs."
+      },
+      {
+        "question": "what is oop",
+        "answer": "OOP stands for Object-Oriented Programming which uses classes and objects."
+      },
+      {
+        "question": "what is inheritance",
+        "answer": "Inheritance allows a class to acquire properties of another class."
+      },
+      {
+        "question": "what is interface",
+        "answer": "An interface defines abstract methods that a class must implement."
       }
     ],
     "suggested": [
       "What is Java?",
-      "What is JVM?"
+      "Features of Java",
+      "What is JVM?",
+      "What is JDK?",
+      "What is JRE?",
+      "What is OOP?",
+      "What is inheritance?",
+      "What is interface?"
     ]
   },
 
@@ -52,11 +111,31 @@
       {
         "question": "types of ai",
         "answer": "AI types include Narrow AI, General AI, and Super AI."
+      },
+      {
+        "question": "applications of ai",
+        "answer": "AI is used in chatbots, self-driving cars, healthcare, and recommendation systems."
+      },
+      {
+        "question": "what is nlp",
+        "answer": "NLP stands for Natural Language Processing, which enables machines to understand human language."
+      },
+      {
+        "question": "what is computer vision",
+        "answer": "Computer Vision enables machines to interpret and understand visual information."
+      },
+      {
+        "question": "ai vs ml",
+        "answer": "AI is the broader concept of intelligent machines, while ML is a subset of AI that learns from data."
       }
     ],
     "suggested": [
       "What is AI?",
-      "Types of AI"
+      "Types of AI",
+      "Applications of AI",
+      "What is NLP?",
+      "What is Computer Vision?",
+      "AI vs ML"
     ]
   },
 
@@ -69,11 +148,36 @@
       {
         "question": "types of machine learning",
         "answer": "Types include Supervised, Unsupervised, and Reinforcement learning."
+      },
+      {
+        "question": "what is supervised learning",
+        "answer": "Supervised learning uses labeled data to train models."
+      },
+      {
+        "question": "what is unsupervised learning",
+        "answer": "Unsupervised learning finds patterns in unlabeled data."
+      },
+      {
+        "question": "what is reinforcement learning",
+        "answer": "Reinforcement learning learns through rewards and penalties."
+      },
+      {
+        "question": "ml algorithms",
+        "answer": "Common ML algorithms include Linear Regression, Decision Trees, SVM, and KNN."
+      },
+      {
+        "question": "ml applications",
+        "answer": "ML is used in spam detection, recommendation systems, fraud detection, and image recognition."
       }
     ],
     "suggested": [
       "What is Machine Learning?",
-      "Types of Machine Learning"
+      "Types of Machine Learning",
+      "What is supervised learning?",
+      "What is unsupervised learning?",
+      "What is reinforcement learning?",
+      "ML algorithms",
+      "Applications of ML"
     ]
   }
 }
