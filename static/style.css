@@ -11,57 +11,153 @@ body {
     padding: 20px;
 }
 
+/* Chat box */
 #chat-box {
     height: 300px;
     overflow-y: auto;
     background: #f3f3f3;
     padding: 10px;
     border-radius: 10px;
+    scroll-behavior: smooth;
 }
 
+/* User message */
 .user {
     background: #4e5cf0;
     color: white;
-    padding: 8px;
-    border-radius: 10px;
-    margin: 5px;
+    padding: 10px 14px;
+    border-radius: 14px;
+    margin: 8px 0;
     text-align: right;
+    max-width: 75%;
+    margin-left: auto;
 }
 
-.bot {
-    background: #ddd;
-    padding: 8px;
-    border-radius: 10px;
-    margin: 5px;
+/* Bot message */
+.bot-message {
+    background: #e6e6e6;
+    padding: 12px 16px;
+    margin: 8px 0;
+    border-radius: 14px;
+    max-width: 75%;
 }
 
+/* Message pop animation */
+.user-pop,
+.bot-pop {
+    animation: popIn 0.25s ease-out;
+}
+
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Typing indicator */
+.typing {
+    font-size: 14px;
+    color: #666;
+    margin: 6px 0;
+    font-style: italic;
+}
+
+.typing span {
+    animation: blink 1.4s infinite both;
+}
+
+.typing span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes blink {
+    0% { opacity: 0.2; }
+    20% { opacity: 1; }
+    100% { opacity: 0.2; }
+}
+
+/* Input area */
 .input-area {
     display: flex;
     margin-top: 10px;
+    gap: 6px;
 }
 
 input {
     flex: 1;
     padding: 10px;
     border-radius: 10px;
+    border: none;
+    outline: none;
+}
+
+input:focus {
+    box-shadow: 0 0 0 2px #4e5cf0;
 }
 
 button {
-    margin-left: 5px;
-    padding: 10px;
+    padding: 10px 14px;
     border-radius: 10px;
-}
-.bot-message {
-    background: #e6e6e6;
-    padding: 12px 16px;
-    margin: 10px 0;
-    border-radius: 14px;
-    max-width: 75%;
-    animation: fadeIn 0.3s ease-in-out;
+    border: none;
+    cursor: pointer;
+    background: #4e5cf0;
+    color: white;
+    font-weight: bold;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(4px); }
-    to { opacity: 1; transform: translateY(0); }
+button:hover {
+    background: #3b48d1;
+}
+
+/* Typing dots indicator */
+.typing {
+    font-size: 14px;
+    color: #666;
+    margin: 6px 0;
+    font-style: italic;
+}
+
+.typing span {
+    animation: blink 1.4s infinite both;
+}
+
+.typing span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes blink {
+    0% { opacity: 0.2; }
+    20% { opacity: 1; }
+    100% { opacity: 0.2; }
+}
+
+/* Message pop animation */
+.user-pop,
+.bot-pop {
+    animation: popIn 0.25s ease-in-out;
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
