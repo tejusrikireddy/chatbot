@@ -48,3 +48,24 @@ function speak(text) {
     const speech = new SpeechSynthesisUtterance(text);
     window.speechSynthesis.speak(speech);
 }
+function typeBotMessage(text) {
+    const chatBox = document.getElementById("chat-box");
+
+    const botDiv = document.createElement("div");
+    botDiv.className = "bot-message";
+    chatBox.appendChild(botDiv);
+
+    let index = 0;
+
+    const typingInterval = setInterval(() => {
+        if (index < text.length) {
+            botDiv.innerHTML += text.charAt(index);
+            index++;
+            chatBox.scrollTop = chatBox.scrollHeight;
+        } else {
+            clearInterval(typingInterval);
+        }
+    }, 30); // typing speed (smaller = faster)
+}
+
+
