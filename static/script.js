@@ -22,7 +22,7 @@ function sendUserInput() {
     })
     .then(res => res.json())
     .then(data => {
-        addMessage(data.reply, "bot");
+        typeBotMessage(data.reply);
         speak(data.reply);
     });
 }
